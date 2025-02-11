@@ -417,6 +417,8 @@ def plot_calibration_curve(y_true, y_probs, positive_label, n_bins=10):
     predicted_probabilities = np.array(predicted_probabilities)
 
     # Creamos el gráfico de la curva de calibración
+
+# Gráfico
     plt.figure(figsize=(8, 6))
     plt.plot(predicted_probabilities, true_proportions, marker='o', linestyle='-', label='Curva de Calibración')
     plt.plot([0, 1], [0, 1], linestyle='--', color='gray', label='Calibración Perfecta')
@@ -428,7 +430,6 @@ def plot_calibration_curve(y_true, y_probs, positive_label, n_bins=10):
     plt.show()
 
     return {"bin_centers": bin_centers, "true_proportions": true_proportions}
-
 
 
 def plot_probability_histograms(y_true, y_probs, positive_label, n_bins=10):
@@ -470,12 +471,18 @@ def plot_probability_histograms(y_true, y_probs, positive_label, n_bins=10):
     negative_probs = y_probs[y_true_mapped == 0]
 
     # Dibujamos los histogramas
-    plt.figure(figsize=(10, 6))
     plt.hist(positive_probs, bins=n_bins, alpha=0.5, label='Clase Positiva', color='blue')
+    plt.xlabel('Probabilidad Predicha')
+    plt.ylabel('Frecuencia')
+    plt.title('Distribución de Probabilidades para la Clase Positiva')
+    plt.legend(loc='upper left')
+    plt.grid(True)
+    plt.show()
+
     plt.hist(negative_probs, bins=n_bins, alpha=0.5, label='Clase Negativa', color='red')
     plt.xlabel('Probabilidad Predicha')
     plt.ylabel('Frecuencia')
-    plt.title('Distribución de Probabilidades para las Clases Positiva y Negativa')
+    plt.title('Distribución de Probabilidades para las Clase Negativa')
     plt.legend(loc='upper left')
     plt.grid(True)
     plt.show()
